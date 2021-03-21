@@ -1,30 +1,33 @@
 <img
-  src="https://raw.githubusercontent.com/kube/vscode-42header/master/42.png" 
+  src="https://raw.githubusercontent.com/StephaneBranly/vscode-utc-header/master/logoUTC.png" 
   width=128>
 
-# 42 Header for VSCode
+# UTC Header for VSCode
 
-This extension provides the 42 header integration in VS Code.
+This extension provides the UTC header integration in VS Code.
 
 ```bash
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    vscode-42header                                    :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: kube <hello@kube.io>                       +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2013/11/18 13:37:42 by kube              #+#    #+#              #
-#    Updated: 2016/09/18 13:11:04 by kube             ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+#****************************************************************************************************#
+#                                                                                                    #
+#                                                                :::    ::: :::::::::::  ::::::::    #
+#   test.cpp                                                     :+:    :+:     :+:     :+:    :+:   #
+#                                                                +:+    +:+     +:+     +:+          #
+#   By: stephane_branly <stephane.branly@etu.utc.fr>             +:+    +:+     +:+     +:+          #
+#                                                                +#+    +:+     +#+     +#+          #
+#   Created: 2021/03/21 23:56:26 by stephane_branly              +#+    +:+     +#+     +#+          #
+#   Updated: 2021/03/21 23:56:26 by stephane_branly              +#+    +#+     +#+     +#+          #
+#                                                                #+#    #+#     #+#     #+#    #+#   #
+#                                                                 ########      ###      ########    #
+#                                                                                                    #
+#****************************************************************************************************#
 ```
+
 
 ## Install
 
 Launch Quick Open with <kbd>⌘</kbd>+<kbd>P</kbd> and enter
 ```
-ext install 42header
+ext install utcheader
 ```
 
 ## Usage
@@ -44,16 +47,15 @@ To override these values, specify these properties in *User Settings* :
 
 ```ts
 {
-  "42header.username": string,
-  "42header.email": string
+  "utcheader.username": string,
+  "utcheader.email": string
 }
 ```
 
 
 ## Issues
 
-To report a bug or ask for a feature, please open a [Github issue](https://github.com/kube/vscode-42header/issues).
-
+In case of a bug, or missing feature, please create a [Github Pull Request](https://github.com/StephaneBranly/vscode-utc-header/pulls).
 
 ## License
 
