@@ -1,16 +1,16 @@
 <img
-  src="https://raw.githubusercontent.com/kube/vscode-42header/master/42.png" 
+  src="https://raw.githubusercontent.com/StephaneBranly/vscode-utc-header/master/logoUTC.png" 
   width=128>
 
-# 42 Header for VSCode
+# UTC Header for VSCode
 
-This extension provides the 42 header integration in VS Code.
+This extension provides the UTC header integration in VS Code.
 
 ```bash
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    vscode-42header                                    :+:      :+:    :+:    #
+#    vscode-utc-header                                  :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: kube <hello@kube.io>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
@@ -20,11 +20,12 @@ This extension provides the 42 header integration in VS Code.
 # **************************************************************************** #
 ```
 
+
 ## Install
 
 Launch Quick Open with <kbd>⌘</kbd>+<kbd>P</kbd> and enter
 ```
-ext install 42header
+ext install utcheader
 ```
 
 ## Usage
@@ -44,8 +45,8 @@ To override these values, specify these properties in *User Settings* :
 
 ```ts
 {
-  "42header.username": string,
-  "42header.email": string
+  "utcheader.username": string,
+  "utcheader.email": string
 }
 ```
 
