@@ -1,13 +1,3 @@
-
-      /*#######.
-     ########",#:
-   #########',##".
-  ##'##'## .##',##.
-   ## ## ## # ##",#.
-    ## ## ## ## ##'
-     ## ## ## :##
-      ## ## ##*/
-
 import { basename } from 'path'
 import vscode = require('vscode')
 import moment = require('moment')
@@ -26,14 +16,14 @@ import {
  */
 const getCurrentUser = () =>
   vscode.workspace.getConfiguration()
-    .get('42header.username') || process.env['USER'] || 'marvin'
+    .get('utcheader.username') || process.env['USER'] || 'branlyst'
 
 /**
  * Return current user mail from config or default value
  */
 const getCurrentUserMail = () =>
   vscode.workspace.getConfiguration()
-    .get('42header.email') || `${getCurrentUser()}@student.42.fr`
+    .get('utcheader.email') || `${getCurrentUser()}@etu.utc.fr`
 
 /**
  * Update HeaderInfo with last update author and date, and update filename
