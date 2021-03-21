@@ -7,17 +7,19 @@
 This extension provides the UTC header integration in VS Code.
 
 ```bash
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    vscode-utc-header                                  :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: kube <hello@kube.io>                       +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2013/11/18 13:37:42 by kube              #+#    #+#              #
-#    Updated: 2016/09/18 13:11:04 by kube             ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+#****************************************************************************************************#
+#                                                                                                    #
+#                                                                :::    ::: :::::::::::  ::::::::    #
+#   test.cpp                                                     :+:    :+:     :+:     :+:    :+:   #
+#                                                                +:+    +:+     +:+     +:+          #
+#   By: stephane_branly <stephane.branly@etu.utc.fr>             +:+    +:+     +:+     +:+          #
+#                                                                +#+    +:+     +#+     +#+          #
+#   Created: 2021/03/21 23:56:26 by stephane_branly              +#+    +:+     +#+     +#+          #
+#   Updated: 2021/03/21 23:56:26 by stephane_branly              +#+    +#+     +#+     +#+          #
+#                                                                #+#    #+#     #+#     #+#    #+#   #
+#                                                                 ########      ###      ########    #
+#                                                                                                    #
+#****************************************************************************************************#
 ```
 
 
@@ -53,7 +55,7 @@ To override these values, specify these properties in *User Settings* :
 
 ## Issues
 
-In case of a bug, or missing feature, please create a [Github Pull Request](https://github.com/kube/vscode-42header/pulls).
+In case of a bug, or missing feature, please create a [Github Pull Request](https://github.com/StephaneBranly/vscode-utc-header/pulls).
 
 ## License
 
