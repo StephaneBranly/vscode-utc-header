@@ -113,7 +113,7 @@ const startUpdateOnSaveWatcher = (subscriptions: vscode.Disposable[]) =>
 
 export const activate = (context: vscode.ExtensionContext) => {
   const disposable = vscode.commands
-    .registerTextEditorCommand('42header.insertHeader', insertHeaderHandler)
+    .registerTextEditorCommand('utcheader.insertHeader', insertHeaderHandler)
 
   context.subscriptions.push(disposable)
   startUpdateOnSaveWatcher(context.subscriptions)
