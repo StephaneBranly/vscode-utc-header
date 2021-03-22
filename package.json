@@ -3,7 +3,7 @@
   "displayName": "UTC Header",
   "description": "UTC header for VSCode : www.utc.fr",
   "version": "0.42.7",
-  "publisher": "UTCHeader",
+  "publisher": "stephanebranly",
   "icon": "logoUTC.png",
   "repository": {
     "type": "git",
