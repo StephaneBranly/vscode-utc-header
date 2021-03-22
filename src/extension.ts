@@ -26,12 +26,20 @@ const getCurrentUserMail = () =>
     .get('utcheader.email') || `${getCurrentUser()}@etu.utc.fr`
 
 /**
+ * Return current git from config
+ */
+ const getCurrentGit = () =>
+ vscode.workspace.getConfiguration()
+   .get('utcheader.git') || ''
+   
+/**
  * Update HeaderInfo with last update author and date, and update filename
  * Returns a fresh new HeaderInfo if none was passed
  */
 const newHeaderInfo = (document: TextDocument, headerInfo?: HeaderInfo) => {
   const user = getCurrentUser()
   const mail = getCurrentUserMail()
+  const git = getCurrentGit()
 
   return Object.assign({},
     // This will be overwritten if headerInfo is not null
@@ -43,6 +51,7 @@ const newHeaderInfo = (document: TextDocument, headerInfo?: HeaderInfo) => {
     {
       filename: basename(document.fileName),
       author: `${user} <${mail}>`,
+      git: git,
       updatedBy: user,
       updatedAt: moment()
     }
@@ -59,7 +68,6 @@ const insertHeaderHandler = () => {
   if (supportsLanguage(document.languageId))
     activeTextEditor.edit(editor => {
       const currentHeader = extractHeader(document.getText())
-
       if (currentHeader)
         editor.replace(
           new Range(0, 0, 12, 0),

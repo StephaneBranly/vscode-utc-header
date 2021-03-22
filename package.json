@@ -2,7 +2,7 @@
   "name": "utcheader",
   "displayName": "UTC Header",
   "description": "UTC header for VSCode : www.utc.fr",
-  "version": "0.42.7",
+  "version": "0.42.8",
   "publisher": "stephanebranly",
   "icon": "logoUTC.png",
   "repository": {
@@ -34,6 +34,10 @@
         "utcheader.email": {
           "type": "string",
           "description": "Email address to use in UTC headers"
+        },
+        "utcheader.git": {
+          "type": "string",
+          "description": "Git link to use in UTC headers"
         }
       } 
     },
