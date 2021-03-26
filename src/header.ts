@@ -20,14 +20,15 @@ const genericTemplate = `
 *                                                                 ::::::::::::::::::::      :::    ::: :::::::::::  ::::::::     *
 *    $FILENAME_______________________________________             ::::::::::::::::::::      :+:    :+:     :+:     :+:    :+:    *
 *                                                                 ::::::::::::::+++#####+++ +:+    +:+     +:+     +:+           *
-*    By: $AUTHOR_____________________________________________     ::+++##############+++    +:+    +:+     +:+     +:+           *
-*    $GIT____________________________________________________ +++##############+++::::      +#+    +:+     +#+     +#+           *
+*    By: $AUTHOR_________________________________________         ::+++##############+++    +:+    +:+     +:+     +:+           *
+*    $GIT________________________________________________     +++##############+++::::      +#+    +:+     +#+     +#+           *
 *                                                               +++##+++::::::::::::::      +#+    +:+     +#+     +#+           *
 *                                                                 ::::::::::::::::::::      +#+    +#+     +#+     +#+           *
 *                                                                 ::::::::::::::::::::      #+#    #+#     #+#     #+#    #+#    *
 *    Created: $CREATEDAT_________ by $CREATEDBY______________     ::::::::::::::::::::       ########      ###      ######## .fr *
 *                                                                                                                                *
 **********************************************************************************************************************************
+
 `.substring(1)
 
 /**
@@ -89,7 +90,7 @@ const fieldRegex = (name: string) =>
  */
 const getFieldValue = (header: string, name: string) => {
   const [_, offset, field] = genericTemplate.match(fieldRegex(name))
-
+  console.log("get field value" + header);
   return header.substr(offset.length, field.length)
 }
 
@@ -126,8 +127,8 @@ export const renderHeader = (languageId: string, info: HeaderInfo) => [
   { name: 'CREATEDAT', value: formatDate(info.createdAt) },
   { name: 'CREATEDBY', value: info.createdBy },
   { name: 'GIT', value: info.git },
-  { name: 'UPDATEDAT', value: formatDate(info.updatedAt) },
-  { name: 'UPDATEDBY', value: info.updatedBy }
+  // { name: 'UPDATEDAT', value: formatDate(info.updatedAt) },
+  // { name: 'UPDATEDBY', value: info.updatedBy }
 ].reduce((header, field) =>
   setFieldValue(header, field.name, field.value),
   getTemplate(languageId))
