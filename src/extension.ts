@@ -76,10 +76,10 @@ const insertHeaderHandler = () => {
     {
       console.log("current header exists");
       editor.replace(
-        new Range(0, 0, 12, 0),
+        new Range(0, 0, 14, 0),
         renderHeader(
           document.languageId,
-          newHeaderInfo(document, getHeaderInfo(currentHeader))
+          newHeaderInfo(document)
         ) 
       )
     }
@@ -120,10 +120,10 @@ const startUpdateOnSaveWatcher = (subscriptions: vscode.Disposable[]) =>
         supportsLanguage(document.languageId) && currentHeader ?
           [
             TextEdit.replace(
-              new Range(0, 0, 12, 0),
+              new Range(0, 0, 14, 0),
               renderHeader(
                 document.languageId,
-                newHeaderInfo(document, getHeaderInfo(currentHeader))
+                newHeaderInfo(document)
               )
             )
           ]
