@@ -4,6 +4,7 @@ const semicolons = [';; ', ' ;;']
 const parens = ['(* ', ' *)']
 const dashes = ['-- ', ' --']
 const percents = ['%% ', ' %%']
+const arrows = ['<!-- ', ' -->']
 
 export const languageDemiliters: { [lang: string]: string[] | undefined } = {
   'c': slashes,
@@ -15,6 +16,7 @@ export const languageDemiliters: { [lang: string]: string[] | undefined } = {
   'go': slashes,
   'groovy': slashes,
   'haskell': dashes,
+  'html' : arrows,
   'ini': semicolons,
   'jade': slashes,
   'java': slashes,

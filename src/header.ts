@@ -6,6 +6,7 @@ export type HeaderInfo = {
   author: string,
   createdBy: string,
   createdAt: moment.Moment,
+  git: string,
   updatedBy: string,
   updatedAt: moment.Moment
 }
@@ -14,26 +15,21 @@ export type HeaderInfo = {
  * Template where each field name is prefixed by $ and is padded with _
  */
 const genericTemplate = `
-********************************************************************************************************
-*                                                                                                      *
-*                                                                 :::    ::: :::::::::::  ::::::::     *
-*    $FILENAME_______________________________________             :+:    :+:     :+:     :+:    :+:    *
-*                                                                 +:+    +:+     +:+     +:+           *
-*    By: $AUTHOR_____________________________________________     +:+    +:+     +:+     +:+           *
-*                                                                 +#+    +:+     +#+     +#+           *
-*    Created: $CREATEDAT_________ by $CREATEDBY______________     +#+    +:+     +#+     +#+           *
-*    Updated: $UPDATEDAT_________ by $UPDATEDBY______________     +#+    +#+     +#+     +#+           *
-*                                                                 #+#    #+#     #+#     #+#    #+#    *
-*                                                                  ########      ###      ########     *
-*                                                                                                      *
-********************************************************************************************************
+*************************************************************************************************************************
+* UTC Header                                                                                                            *
+*                                                       ::::::::::::::::::::       :::    ::: :::::::::::  ::::::::     *
+*    $FILENAME_________________________________         ::::::::::::::::::::       :+:    :+:     :+:     :+:    :+:    *
+*                                                       ::::::::::::::+++#####+++  +:+    +:+     +:+     +:+           *
+*    By: $AUTHOR_________________________________       ::+++##############+++     +:+    +:+     +:+     +:+           *
+*    $GIT__________________________________________ +++##############+++::::       +#+    +:+     +#+     +#+           *
+*                                                     +++##+++::::::::::::::       +#+    +:+     +#+     +#+           *
+*                                                       ::::::::::::::::::::       +#+    +#+     +#+     +#+           *
+*                                                       ::::::::::::::::::::       #+#    #+#     #+#     #+#    #+#    *
+*    Update: $CREATEDAT_________ by $CREATEDBY________  ::::::::::::::::::::        ########      ###      ######## .fr *
+*                                                                                                                       *
+*************************************************************************************************************************
 
 `.substring(1)
-
-
- 
-
-
 
 /**
  * Get specific header template for languageId
@@ -76,7 +72,7 @@ export const supportsLanguage = (languageId: string) =>
  * Returns current header text if present at top of document
  */
 export const extractHeader = (text: string): string | null => {
-  const headerRegex = `^(.{80}\n){10}`
+  const headerRegex = `^.*\n.*UTC Header.*\n((.*\n){12})`
   const match = text.match(headerRegex)
 
   return match ? match[0] : null
@@ -94,7 +90,6 @@ const fieldRegex = (name: string) =>
  */
 const getFieldValue = (header: string, name: string) => {
   const [_, offset, field] = genericTemplate.match(fieldRegex(name))
-
   return header.substr(offset.length, field.length)
 }
 
@@ -117,6 +112,7 @@ export const getHeaderInfo = (header: string): HeaderInfo => ({
   author: getFieldValue(header, 'AUTHOR'),
   createdBy: getFieldValue(header, 'CREATEDBY'),
   createdAt: parseDate(getFieldValue(header, 'CREATEDAT')),
+  git: getFieldValue(header, 'GIT'),
   updatedBy: getFieldValue(header, 'UPDATEDBY'),
   updatedAt: parseDate(getFieldValue(header, 'UPDATEDAT'))
 })
@@ -129,8 +125,9 @@ export const renderHeader = (languageId: string, info: HeaderInfo) => [
   { name: 'AUTHOR', value: info.author },
   { name: 'CREATEDAT', value: formatDate(info.createdAt) },
   { name: 'CREATEDBY', value: info.createdBy },
-  { name: 'UPDATEDAT', value: formatDate(info.updatedAt) },
-  { name: 'UPDATEDBY', value: info.updatedBy }
+  { name: 'GIT', value: info.git },
+  // { name: 'UPDATEDAT', value: formatDate(info.updatedAt) },
+  // { name: 'UPDATEDBY', value: info.updatedBy }
 ].reduce((header, field) =>
   setFieldValue(header, field.name, field.value),
   getTemplate(languageId))

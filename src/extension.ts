@@ -26,13 +26,22 @@ const getCurrentUserMail = () =>
     .get('utcheader.email') || `${getCurrentUser()}@etu.utc.fr`
 
 /**
+ * Return current git from config
+ */
+ const getCurrentGit = () =>
+  vscode.workspace.getConfiguration()
+    .get('utcheader.git') || ''
+    
+/**
  * Update HeaderInfo with last update author and date, and update filename
  * Returns a fresh new HeaderInfo if none was passed
  */
 const newHeaderInfo = (document: TextDocument, headerInfo?: HeaderInfo) => {
   const user = getCurrentUser()
   const mail = getCurrentUserMail()
-
+  const git = getCurrentGit()
+  console.log("new header info");
+  console.log("git="+git);
   return Object.assign({},
     // This will be overwritten if headerInfo is not null
     {
@@ -43,6 +52,7 @@ const newHeaderInfo = (document: TextDocument, headerInfo?: HeaderInfo) => {
     {
       filename: basename(document.fileName),
       author: `${user} <${mail}>`,
+      git: git,
       updatedBy: user,
       updatedAt: moment()
     }
@@ -53,30 +63,44 @@ const newHeaderInfo = (document: TextDocument, headerInfo?: HeaderInfo) => {
  * `insertHeader` Command Handler
  */
 const insertHeaderHandler = () => {
+  console.log("insert header handler");
   const { activeTextEditor } = vscode.window
   const { document } = activeTextEditor
 
   if (supportsLanguage(document.languageId))
+  {
+    console.log("supported language");
     activeTextEditor.edit(editor => {
-      const currentHeader = extractHeader(document.getText())
-
-      if (currentHeader)
-        editor.replace(
-          new Range(0, 0, 12, 0),
-          renderHeader(
-            document.languageId,
-            newHeaderInfo(document, getHeaderInfo(currentHeader))
-          )
+    const currentHeader = extractHeader(document.getText())
+    if (currentHeader)
+    {
+      console.log("current header exists");
+      editor.replace(
+        new Range(0, 0, 14, 0),
+        renderHeader(
+          document.languageId,
+          newHeaderInfo(document)
+        ) 
+      )
+    }
+    else
+    {
+      console.log("no current header");
+      console.log(
+        newHeaderInfo(document)
+      );
+      editor.insert(
+        new Position(0, 0),
+        renderHeader(
+          document.languageId,
+          newHeaderInfo(document)
         )
-      else
-        editor.insert(
-          new Position(0, 0),
-          renderHeader(
-            document.languageId,
-            newHeaderInfo(document)
-          )
-        )
-    })
+      )
+    }
+      
+  })
+  }
+    
   else
     vscode.window.showInformationMessage(
       `No header support for language ${document.languageId}`
@@ -96,10 +120,10 @@ const startUpdateOnSaveWatcher = (subscriptions: vscode.Disposable[]) =>
         supportsLanguage(document.languageId) && currentHeader ?
           [
             TextEdit.replace(
-              new Range(0, 0, 12, 0),
+              new Range(0, 0, 14, 0),
               renderHeader(
                 document.languageId,
-                newHeaderInfo(document, getHeaderInfo(currentHeader))
+                newHeaderInfo(document)
               )
             )
           ]
@@ -114,7 +138,6 @@ const startUpdateOnSaveWatcher = (subscriptions: vscode.Disposable[]) =>
 export const activate = (context: vscode.ExtensionContext) => {
   const disposable = vscode.commands
     .registerTextEditorCommand('utcheader.insertHeader', insertHeaderHandler)
-
   context.subscriptions.push(disposable)
   startUpdateOnSaveWatcher(context.subscriptions)
 }
