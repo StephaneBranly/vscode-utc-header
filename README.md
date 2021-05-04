@@ -48,11 +48,12 @@ To override these values, specify these properties in *User Settings* :
 ```ts
 {
   "utcheader.username": string,
-  "utcheader.email": string
+  "utcheader.email": string,
+  "utcheader.git": string
 }
 ```
 
-
+S
 ## Issues
 
 In case of a bug, or missing feature, please create a [Github Pull Request](https://github.com/StephaneBranly/vscode-utc-header/pulls).
