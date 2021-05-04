@@ -3,11 +3,11 @@ import vscode = require('vscode')
 import moment = require('moment')
 
 import {
-  ExtensionContext, TextEdit, TextEditorEdit, TextDocument, Position, Range
+  TextEdit, TextDocument, Position, Range
 } from 'vscode'
 
 import {
-  extractHeader, getHeaderInfo, renderHeader,
+  extractHeader, renderHeader,
   supportsLanguage, HeaderInfo
 } from './header'
 
