@@ -3,11 +3,11 @@ import vscode = require('vscode')
 import moment = require('moment')
 
 import {
-  ExtensionContext, TextEdit, TextEditorEdit, TextDocument, Position, Range
+  TextEdit, TextDocument, Position, Range
 } from 'vscode'
 
 import {
-  extractHeader, getHeaderInfo, renderHeader,
+  extractHeader, renderHeader,
   supportsLanguage, HeaderInfo
 } from './header'
 
@@ -31,7 +31,6 @@ const getCurrentUserMail = () =>
  const getCurrentGit = () =>
   vscode.workspace.getConfiguration()
     .get('utcheader.git') || ''
-    
 /**
  * Update HeaderInfo with last update author and date, and update filename
  * Returns a fresh new HeaderInfo if none was passed
@@ -40,8 +39,6 @@ const newHeaderInfo = (document: TextDocument, headerInfo?: HeaderInfo) => {
   const user = getCurrentUser()
   const mail = getCurrentUserMail()
   const git = getCurrentGit()
-  console.log("new header info");
-  console.log("git="+git);
   return Object.assign({},
     // This will be overwritten if headerInfo is not null
     {
@@ -63,18 +60,15 @@ const newHeaderInfo = (document: TextDocument, headerInfo?: HeaderInfo) => {
  * `insertHeader` Command Handler
  */
 const insertHeaderHandler = () => {
-  console.log("insert header handler");
   const { activeTextEditor } = vscode.window
   const { document } = activeTextEditor
 
   if (supportsLanguage(document.languageId))
   {
-    console.log("supported language");
     activeTextEditor.edit(editor => {
     const currentHeader = extractHeader(document.getText())
     if (currentHeader)
     {
-      console.log("current header exists");
       editor.replace(
         new Range(0, 0, 14, 0),
         renderHeader(
@@ -85,10 +79,6 @@ const insertHeaderHandler = () => {
     }
     else
     {
-      console.log("no current header");
-      console.log(
-        newHeaderInfo(document)
-      );
       editor.insert(
         new Position(0, 0),
         renderHeader(
